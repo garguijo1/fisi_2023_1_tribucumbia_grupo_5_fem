@@ -49,23 +49,25 @@ class MainActivity : AppCompatActivity() {
     private fun performLogin(){
         val user_text = findViewById<EditText>(R.id.edtUser).text.toString()
         val pass_text = findViewById<EditText>(R.id.editPass).text.toString()
-
+        println(user_text + " - " +pass_text);
         if(user_text.isNotEmpty() && pass_text.isNotEmpty() ){
             val cliente = userDTO(user_text,pass_text)
             val call = apiService.postLogin(cliente)
+            println("CALL : " + call)
             call.enqueue(object: Callback<LoginResponse> {
                 override fun onResponse(call: Call<LoginResponse>, response: Response<LoginResponse>) {
-
+                    println("RESPONSE : " + response)
                     if (response.isSuccessful){
-
+                        println(response)
                         val loginResponse = response.body()
 
                         if(loginResponse == null){
                             Toast.makeText(applicationContext,"se produjo un error en el servidor",Toast.LENGTH_LONG).show()
                             return
                         }
-
+                        println(loginResponse.datos.id_cliente)
                         if(loginResponse.datos.id_cliente != null){
+
                             Toast.makeText(applicationContext,"sesion iniciada correctamente",Toast.LENGTH_LONG).show()
                             println(loginResponse)
                             prefs.saveId(loginResponse.datos.id_cliente)

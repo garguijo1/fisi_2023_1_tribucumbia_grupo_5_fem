@@ -23,10 +23,10 @@ class ReservasViewHolder(val view : View,val listener : OnReservaClickListener) 
     fun render(reservasModel : Reservas){
 
         btnAgregar.setOnClickListener { listener.onClickAgregar(reservasModel.id_reservacion) }
-        btnDetallar.setOnClickListener { listener.onClickDetallar(reservasModel.id_reservacion,reservasModel.fecha,reservasModel.sede,reservasModel.sillas) }
+        btnDetallar.setOnClickListener { listener.onClickDetallar(reservasModel.id_reservacion,"${reservasModel.fecha} - ${reservasModel.hora}",reservasModel.sede,reservasModel.sillas) }
 
         cod_reserva.text = "#${reservasModel.id_reservacion}"
-        fecha_reserva.text=reservasModel.fecha
+        fecha_reserva.text= "${reservasModel.fecha} - ${reservasModel.hora}"
         if(reservasModel.atendido == 1){
             atentido_reserva.text = "Atendido"
         }else{

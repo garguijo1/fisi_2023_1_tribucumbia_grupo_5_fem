@@ -10,8 +10,10 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import com.example.vistas.R
+import com.example.vistas.model.Platillo
 import com.example.vistas.model.PlatilloFinal
 import com.example.vistas.model.ReservaCarta
+import com.example.vistas.util.Global
 
 class AgregarPlatillo : AppCompatActivity() {
 
@@ -70,16 +72,9 @@ class AgregarPlatillo : AppCompatActivity() {
     }
 
     fun  agregarPlatillo(){
-        /*
-        *  intentPlatillo.putExtra("id_reservacion",reservacion)
-        intentPlatillo.putExtra("id_platillo",idPlatillo)
-        intentPlatillo.putExtra("nombre",nombre)
-        intentPlatillo.putExtra("descripcion",descripcion)
-        intentPlatillo.putExtra("foto",foto)
-        intentPlatillo.putExtra("precio",precio)
-        * */
 
         val id_reservacion = intent.getIntExtra("id_reservacion",0)
+        println("desde el agregar : "+id_reservacion)
 
         val id_platillo = intent.getIntExtra("id_platillo",0)
         val nombre = intent.getStringExtra("nombre").toString()
@@ -87,12 +82,11 @@ class AgregarPlatillo : AppCompatActivity() {
         val foto = intent.getStringExtra("foto").toString()
 
         val intentFinal = Intent(applicationContext, Final::class.java)
+
+        val platilloFinal = PlatilloFinal(id_platillo,nombre,precio,foto,this.cantidad);
+        Global.platillosSeleccionados.add(platilloFinal)
+
         intentFinal.putExtra("id_reservacion",id_reservacion)
-        intentFinal.putExtra(" id_platillo", id_platillo)
-        intentFinal.putExtra("nombre",nombre)
-        intentFinal.putExtra("precio",precio)
-        intentFinal.putExtra("foto",foto)
-        intentFinal.putExtra("cantidad",this.cantidad)
 
         startActivity(intentFinal)
     }

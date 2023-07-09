@@ -77,12 +77,12 @@
         android:id="@+id/textViewUsuarioMesaConfir"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="172dp"
-        android:layout_marginEnd="120dp"
+        android:layout_marginTop="164dp"
+        android:layout_marginEnd="168dp"
         android:fontFamily="@font/lato_bold"
         android:text="@string/usuario"
         android:textColor="#7E0000"
-        android:textSize="48sp"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

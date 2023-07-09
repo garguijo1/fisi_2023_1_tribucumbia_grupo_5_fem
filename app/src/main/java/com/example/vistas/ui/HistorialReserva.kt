@@ -70,6 +70,7 @@ class HistorialReserva : AppCompatActivity(),OnReservaClickListener {
     }
 
     override fun onClickAgregar(codigo: Int) {
+        println("desde el historial : "+codigo)
         val intentAgregar = Intent(this,Menu::class.java)
         intentAgregar.putExtra("id_reservacion",codigo)
         startActivity(intentAgregar)

@@ -1,6 +1,7 @@
 package com.example.vistas.io
 
 import com.example.vistas.io.response.*
+import com.example.vistas.model.AgregarReserva
 import com.example.vistas.model.ReservacionModel
 import com.example.vistas.model.UserModel
 import com.example.vistas.model.userDTO
@@ -11,16 +12,23 @@ import retrofit2.http.*
 
 
 interface ApiService {
-    @POST( value = "clientes/login")
+    @POST( value = "ne-gestion-cliente/bstk/servicio-al-cliente/v1/login")
     fun postLogin(@Body userDTO : userDTO):
             Call<LoginResponse>
 
-    @POST( value = "clientes/crear")
+    @POST( value = "ne-gestion-cliente/bstk/servicio-al-cliente/v1/crear-cliente")
     fun postCliente(@Body userModel: UserModel ):
             Call<MensajeResponse>
 
     @Headers("Content-Type: application/json")
-    @POST( value = "reservaciones/crear")
+    @POST( value = "ne-gestion-reservaciones/bstk/servicio-al-cliente/v1/agregar-platillos-reservacion")
+    fun postAgregarPlatilloReservacion(
+        @Body agregarReserva: AgregarReserva,
+        @Header("Authorization") token: String?
+    ): Call<MensajeResponse>
+
+    @Headers("Content-Type: application/json")
+    @POST( value = "ne-gestion-reservaciones/bstk/servicio-al-cliente/v1/crear-reservacion")
     fun postReservacion(
         @Query( value = "accion") accion : Int,
         @Body reservaModel: ReservacionModel ,
@@ -28,21 +36,21 @@ interface ApiService {
     ): Call<ReservaCreatedResponse>
 
     @Headers("Content-Type: application/json")
-    @GET( value = "platillos")
+    @GET( value = "ne-gestion-platillos/bstk/servicio-al-cliente/v1/listar-platillos")
     fun getPlatillos(
         @Query( value = "accion") accion : Int,
         @Header("Authorization") token: String?
     ):  Call<PlatillosResponse>
 
     @Headers("Content-Type: application/json")
-    @GET( value = "sedes")
+    @GET( value = "ne-gestion-sedes/bstk/servicio-al-cliente/v1/listar-sedes")
     fun getSedes(
         @Query( value = "accion") accion : Int,
         @Header("Authorization") token: String?
     ):  Call<SedesResponse>
 
     @Headers("Content-Type: application/json")
-    @GET( value = "reservaciones/cliente/{id}")
+    @GET( value = "ne-gestion-reservaciones/bstk/servicio-al-cliente/v1/listar-reservaciones-cliente/{id}")
     fun getReservasCliente(
         @Path( value = "id") id : Int,
         @Query( value = "accion") accion : Int,
@@ -50,7 +58,7 @@ interface ApiService {
     ):  Call<ReservacionesResponse>
 
     @Headers("Content-Type: application/json")
-    @GET( value = "reservaciones/detallar/{id}")
+    @GET( value = "ne-gestion-reservaciones/bstk/servicio-al-cliente/v1/detallar/{id}")
     fun getDetalleReserva(
         @Path( value = "id") id : Int,
         @Query( value = "accion") accion : Int,
@@ -59,7 +67,8 @@ interface ApiService {
 
 
     companion object Factory{
-        private const val BASE_URL = "http://aks-proyecto.35484a235db345ef9c3f.eastus.aksapp.io/api/v1/"
+        private const val BASE_URL = "http://10.0.2.2:9000/"
+        //private const val BASE_URL = "http://172.17.0.2:9000/"
         fun create(): ApiService{
             val retrofit = Retrofit.Builder()
                 .baseUrl(BASE_URL)

@@ -72,6 +72,7 @@ class Menu : AppCompatActivity(),OnClickPlatillo {
         val intentPlatillo = Intent(this,AgregarPlatillo::class.java)
 
         val reservacion : Int = intent.getIntExtra("id_reservacion",0)
+        println("desde el menu : "+reservacion)
 
         intentPlatillo.putExtra("id_reservacion",reservacion)
         intentPlatillo.putExtra("id_platillo",idPlatillo)

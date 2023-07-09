@@ -12,6 +12,10 @@
         android:id="@+id/textViewTotal1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="90dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
         android:backgroundTint="#7E0000"
         android:fontFamily="@font/lato_bold"
         android:text="@string/total"
@@ -19,10 +23,10 @@
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/textViewCalculoTotal"
-        app:layout_constraintHorizontal_bias="0.846"
+        app:layout_constraintHorizontal_bias="0.869"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView3"
-        app:layout_constraintVertical_bias="0.767" />
+        app:layout_constraintTop_toBottomOf="@+id/listDetReserva"
+        app:layout_constraintVertical_bias="0.204" />
 
     <TextView
         android:id="@+id/laBistecca"
@@ -56,7 +60,7 @@
         app:layout_constraintVertical_bias="0.0" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/agregarOtro"
         android:layout_width="230dp"
         android:layout_height="50dp"
         android:layout_marginBottom="4dp"
@@ -68,15 +72,15 @@
         android:textColor="#000000"
         android:textSize="14sp"
         app:cornerRadius="21.5dp"
-        app:layout_constraintBottom_toTopOf="@+id/button2"
+        app:layout_constraintBottom_toTopOf="@+id/guardar"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.585"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/parent"
         app:layout_constraintVertical_bias="0.878" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/guardar"
         android:layout_width="230dp"
         android:layout_height="50dp"
         android:layout_marginTop="80dp"
@@ -89,7 +93,7 @@
         android:textSize="14sp"
         app:cornerRadius="21.5dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.585"
+        app:layout_constraintHorizontal_bias="0.491"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewTotal1" />
 
@@ -113,8 +117,8 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/listDetReserva"
-        android:layout_width="337dp"
-        android:layout_height="201dp"
+        android:layout_width="332dp"
+        android:layout_height="424dp"
         android:layout_marginStart="50dp"
         android:layout_marginTop="28dp"
         android:layout_marginEnd="50dp"
@@ -126,12 +130,15 @@
         android:id="@+id/textViewCalculoTotal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:layout_marginEnd="90dp"
         android:layout_marginBottom="24dp"
         android:fontFamily="@font/lato"
         android:text="S/ X.00"
         android:textColor="#000000"
         android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@+id/button"
-        tools:layout_editor_absoluteX="263dp" />
+        app:layout_constraintBottom_toTopOf="@+id/agregarOtro"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textViewTotal1" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

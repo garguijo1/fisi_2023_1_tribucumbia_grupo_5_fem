@@ -14,5 +14,6 @@ data class ReservacionModel(
     val sillas : Int,
     val id_cliente : Int,
     val id_sede : Int,
-    val fecha : String
+    val fecha : String,
+    val hora : String
 )

@@ -41,12 +41,14 @@ class ReservaHora : AppCompatActivity() {
         val tvCantidad = findViewById<TextView>(R.id.textView2)
 
 
-        btn4.setOnClickListener { this.horaReserva = "16:00:00" }
-        btn5.setOnClickListener { this.horaReserva = "17:00:00" }
-        btn6.setOnClickListener { this.horaReserva = "18:00:00" }
-        btn7.setOnClickListener { this.horaReserva = "19:00:00" }
-        btn8.setOnClickListener { this.horaReserva = "20:00:00" }
-        btn9.setOnClickListener { this.horaReserva = "21:00:00" }
+        btn4.setOnClickListener { this.horaReserva = "16:00:00"; modificarfecha("16:00:00") }
+        btn5.setOnClickListener { this.horaReserva = "17:00:00"; modificarfecha("17:00:00") }
+        btn6.setOnClickListener { this.horaReserva = "18:00:00"; modificarfecha("18:00:00") }
+        btn7.setOnClickListener { this.horaReserva = "19:00:00"; modificarfecha("19:00:00") }
+        btn8.setOnClickListener { this.horaReserva = "20:00:00"; modificarfecha("20:00:00") }
+        btn9.setOnClickListener { this.horaReserva = "21:00:00"; modificarfecha("21:00:00") }
+
+        cargarDatos()
 
         buttonResMesaHora.setOnClickListener {
             guardarReserva()
@@ -76,10 +78,11 @@ class ReservaHora : AppCompatActivity() {
         val sillas : Int = this.cantidad
         val id_cliente : Int = prefs.getId()
         val id_sede : Int = intent.getIntExtra("id_sede",0)
-        val fecha :String = "${intent.getStringExtra("fecha")} ${this.horaReserva}"
+        val fecha :String = "${intent.getStringExtra("fecha")}"
+        val hora : String = this.horaReserva
+        val fecha_envio :String = "${intent.getStringExtra("fecha")}  ${this.horaReserva}"
 
-
-        val reserva_registro = ReservacionModel(sillas,id_cliente,id_sede,fecha)
+        val reserva_registro = ReservacionModel(sillas,id_cliente,id_sede,fecha,hora)
 
         println(reserva_registro)
 
@@ -114,7 +117,7 @@ class ReservaHora : AppCompatActivity() {
                         val nombre_sede = intent.getStringExtra("sede")
                         intentCheck.putExtra("sede",nombre_sede)
                         intentCheck.putExtra("cantidad",sillas)
-                        intentCheck.putExtra("fecha",fecha)
+                        intentCheck.putExtra("fecha",fecha_envio)
                         startActivity(intentCheck)
                     }
                 }
@@ -130,5 +133,14 @@ class ReservaHora : AppCompatActivity() {
         })
     }
 
+    fun cargarDatos(){
+        val tvFecha = findViewById<TextView>(R.id.textViewMenMesahora)
+        tvFecha.setText("${intent.getStringExtra("fecha")} - ${this.horaReserva}")
+    }
+
+    fun modificarfecha(hora : String){
+        val tvFecha = findViewById<TextView>(R.id.textViewMenMesahora)
+        tvFecha.setText("${intent.getStringExtra("fecha")} - ${hora}")
+    }
 
 }

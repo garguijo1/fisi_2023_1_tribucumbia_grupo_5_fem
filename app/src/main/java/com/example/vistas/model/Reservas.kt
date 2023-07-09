@@ -15,5 +15,6 @@ data class Reservas(
     val atendido : Int,
     val sede : String,
     val ubicacion : String,
-    val fecha : String
+    val fecha : String,
+    val hora : String,
 )
